@@ -6,6 +6,7 @@ import { SvgXml } from "react-native-svg";
 
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import { Spacer } from "../../../components/spacer/sapcer.component";
 
 const RestaurantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
@@ -52,9 +53,9 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     photos = [
       "https://imagesvc.meredithcorp.io/v3/mm/image?url=https%3A%2F%2Fstatic.onecms.io%2Fwp-content%2Fuploads%2Fsites%2F19%2F2011%2F12%2F13%2Franch-chicken-mac-cheese-sl-x.jpg",
     ],
-    address = "100, Marine Drive, Colombo",
+    address = "100, Marine Drive, Colombo, Sri Lanka",
     isOpenNow = true,
-    rating = 4,
+    rating = 3,
     isClosedTemporarily = true,
   } = restaurant;
 
@@ -73,10 +74,12 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
           </Rating>
           <SectionEnd>
             {isClosedTemporarily && <ClosedTemp>CLOSED TEMPORARILY</ClosedTemp>}
-            <View style={{ marginRight: 12 }}></View>
-            {isOpenNow && <SvgXml xml={open} width={25} height={25} />}
-            <View style={{ marginRight: 12 }}></View>
-            <Image style={{ width: 20, height: 20 }} source={{ uri: icon }} />
+            <Spacer position="left" size="large">
+              {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
+            </Spacer>
+            <Spacer position="left" size="large">
+              <Image style={{ width: 20, height: 20 }} source={{ uri: icon }} />
+            </Spacer>
           </SectionEnd>
         </Section>
         <Address>{address}</Address>
