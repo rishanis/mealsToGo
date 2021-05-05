@@ -19,6 +19,12 @@ import { Spacer } from "./src/components/spacer/spacer.component";
 
 const Tab = createBottomTabNavigator();
 
+const TAB_ICON = {
+  Restaurant: "md-restaurant",
+  Map: "md-map",
+  Settings: "md-settings",
+};
+
 const Settings = () => (
   <SafeArea>
     <Text>Settings</Text>
@@ -29,6 +35,17 @@ const Map = () => (
     <Text>Map</Text>
   </SafeArea>
 );
+
+const tabBarIcon = (iconName) => ({ size, color }) => (
+  <Ionicons name={iconName} size={size} color={color} />
+);
+
+const screenOptions = ({ route }) => {
+  const iconName = TAB_ICON[route.name];
+  return {
+    tabBarIcon: tabBarIcon(iconName),
+  };
+};
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -45,8 +62,14 @@ export default function App() {
     <>
       <ThemeProvider theme={theme}>
         <NavigationContainer>
-          <Tab.Navigator>
-            <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+          <Tab.Navigator
+            screenOptions={screenOptions}
+            tabBarOptions={{
+              activeTintColor: "tomato",
+              inactiveTintColor: "gray",
+            }}
+          >
+            <Tab.Screen name="Restaurant" component={RestaurantsScreen} />
             <Tab.Screen name="Map" component={Map} />
             <Tab.Screen name="Settings" component={Settings} />
           </Tab.Navigator>
