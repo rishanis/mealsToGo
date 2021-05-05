@@ -1,12 +1,13 @@
 import React from "react";
 import styled from "styled-components/native";
-import { Text, StyleSheet, View, Image } from "react-native";
+import { Image } from "react-native";
 import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
 import { Spacer } from "../../../components/spacer/spacer.component";
+import { Text } from "../../../components/typography/text.component";
 
 const RestaurantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.bg.primary};
@@ -14,11 +15,6 @@ const RestaurantCard = styled(Card)`
 const RestaurantCardCover = styled(Card.Cover)`
   padding: ${(props) => props.theme.space[2]};
   background-color: ${(props) => props.theme.colors.bg.primary};
-`;
-const Title = styled.Text`
-  font-family: ${(props) => props.theme.fonts.heading};
-  font-size: ${(props) => props.theme.fontSizes.body};
-  color: ${(props) => props.theme.colors.ui.primary};
 `;
 const Info = styled.View`
   padding: ${(props) => props.theme.space[3]};
@@ -41,10 +37,6 @@ const Address = styled.Text`
   font-family: ${(props) => props.theme.fonts.body};
   font-size: ${(props) => props.theme.fontSizes.caption};
 `;
-const ClosedTemp = styled.Text`
-  color: ${(props) => props.theme.colors.text.error}
-  font-size: ${(props) => props.theme.fontSizes.caption};
-`;
 
 export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
@@ -65,7 +57,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     <RestaurantCard elevation={5}>
       <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
       <Info>
-        <Title>{name}</Title>
+        <Text variant="label">{name}</Text>
         <Section>
           <Rating>
             {ratingArray.map(() => (
@@ -73,7 +65,9 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
             ))}
           </Rating>
           <SectionEnd>
-            {isClosedTemporarily && <ClosedTemp>CLOSED TEMPORARILY</ClosedTemp>}
+            {isClosedTemporarily && (
+              <Text variant="error">TEMPORARILY CLOSED</Text>
+            )}
             <Spacer position="left" size="medium">
               {isOpenNow && <SvgXml xml={open} width={20} height={20} />}
             </Spacer>
