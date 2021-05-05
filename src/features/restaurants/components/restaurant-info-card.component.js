@@ -25,7 +25,7 @@ export const RestaurantInfoCard = ({ restaurant = {} }) => {
     ],
     address = "100, Marine Drive, Colombo, Sri Lanka",
     isOpenNow = true,
-    rating = 3,
+    rating = 5,
     isClosedTemporarily = false,
   } = restaurant;
 
