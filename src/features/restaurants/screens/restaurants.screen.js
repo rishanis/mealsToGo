@@ -13,6 +13,7 @@ const SearchContainer = styled.View`
 const RestaurantList = styled(FlatList).attrs({
   contentContainerStyle: {
     padding: 16,
+    paddingTop: 0,
   },
 })``;
 export const RestaurantsScreen = () => (
@@ -30,7 +31,7 @@ export const RestaurantsScreen = () => (
         { name: 6 },
       ]}
       renderItem={() => (
-        <Spacer position="bottom" size="small">
+        <Spacer position="bottom" size="medium">
           <RestaurantInfoCard />
         </Spacer>
       )}
